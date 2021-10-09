@@ -17,7 +17,6 @@ export default function NavBar({ title, categories }) {
                                 (<li className="nav-item" key={idx}>
                                     <a className="nav-link" href={cat.link}>{cat.name}</a>
                                 </li>)
-
                             )
                         }
                     </ul>

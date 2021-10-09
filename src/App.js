@@ -1,9 +1,9 @@
 import './App.css';
-import HomeView from './components/views/HomeView';
+import Home from './home';
 
 function App() {
   return (
-    <HomeView></HomeView>
+    <Home></Home>
   );
 }
 

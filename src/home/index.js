@@ -1,7 +1,8 @@
 import React from 'react'
-import NavBar from '../NavBar';
+import NavBar from '../shared/components/NavBar.js';
+import Categories from './categories/index.js';
 
-export default function HomeView() {
+export default function Home() {
 
     const categories = [
         {name: "Sillas", link: "https:google.com/sillas"},
@@ -10,8 +11,9 @@ export default function HomeView() {
     ];
 
     return (
-        <main>
+        <main className='container p-0'>
             <NavBar title = "Home Office Store" categories = {categories}></NavBar>
+            <Categories></Categories>
         </main>
     )
 }
