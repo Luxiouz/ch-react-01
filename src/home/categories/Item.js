@@ -9,7 +9,7 @@ export default function CategoryItem({ category }) {
                 <div className="card-body">
                     <h5 className="card-title">{category.name}</h5>
                     <p className="card-text" style={{ fontSize: '1rem' }}>{category.description}</p>
-                    <button className="btn btn-primary"><NavLink className="text-white text-decoration-none" to={`/category/${category.id}`}>ver productos</NavLink></button>
+                    <NavLink className="text-white text-decoration-none" to={`/category/${category.id}`}><button className="btn btn-primary">ver productos</button></NavLink>
                 </div>
             </div>
         </div>

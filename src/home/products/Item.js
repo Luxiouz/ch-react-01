@@ -10,7 +10,7 @@ export default function ProductItem({product}) {
                     <h5 className="card-title">{product.name}</h5>
                     <p className="card-text" style={{ fontSize: '1rem' }}>{product.description}</p>
                     <p><b>S/. {product.price}</b></p>
-                    <button className="btn btn-primary"><NavLink to={`/item/${product.id}`} className="text-white text-decoration-none">ver más</NavLink></button>
+                    <NavLink to={`/item/${product.id}`} className="text-white text-decoration-none"><button className="btn btn-primary">ver más</button></NavLink>
                 </div>
             </div>
         </div>
