@@ -1,19 +1,20 @@
 import { useState, useEffect } from "react";
 import LoadingCardList from "../../shared/placeholders/LoadingCardList";
-import dataSource from '../../utils/dataSource'
-import CatList from "./CatList";
+import CategoryList from "./ItemList";
+import { getCategories } from "../../utils/dataSource"
+import errorCatcher from "../../utils/errorCatcher";
 
 
-export default function Categories() {
+export default function CategoryContainer() {
 
     const [loading, setLoading] = useState(true)
     const [categories, setCategories] = useState([])
 
     useEffect(() => {
         setLoading(true);
-        dataSource().then(result => {
+        getCategories().then(result => {
             setCategories(result);
-        }).catch(e => console.error(e)).finally(() => {
+        }).catch(e => errorCatcher(e)).finally(() => {
             setLoading(false);
         })
     }, []);
@@ -22,9 +23,9 @@ export default function Categories() {
         <div>
             {
                 loading ?
-                    <LoadingCardList length="6" />
+                    <LoadingCardList length="12" />
                     :
-                    <CatList categories={categories} />
+                    <CategoryList categories={categories} />
             }
         </div>
     )

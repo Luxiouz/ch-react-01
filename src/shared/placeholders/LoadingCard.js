@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function LoadingCard() {
     return (
-        <div className="col-sm-4 col-md-3 p-3" style={{ minWidth: '300px' }}>
+        <div className="col-sm-4 col-md-3 p-3" style={{ width: '300px' }}>
             <div className="card p-0" aria-hidden="true">
                 <img src="../../assets/placeholder-img.jpeg" className="card-img-top" alt="..." />
                 <div className="card-body">

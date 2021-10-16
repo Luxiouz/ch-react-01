@@ -1,14 +1,15 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 
-export default function catItem({ category }) {
+export default function CategoryItem({ category }) {
     return (
-        <div className="col-sm-4 col-md-3 col-lg-2 py-3" style={{ minWidth: '18rem' }}>
+        <div className="col-sm-4 col-md-3 col-lg-2 py-3" style={{ minWidth: '18rem' , alignSelf: 'center'}}>
             <div className="card p-0">
                 <img src={category.photoUrl} className="card-img-top" alt={category.name} />
                 <div className="card-body">
                     <h5 className="card-title">{category.name}</h5>
                     <p className="card-text" style={{ fontSize: '1rem' }}>{category.description}</p>
-                    <button className="btn btn-primary">ver productos</button>
+                    <button className="btn btn-primary"><NavLink className="text-white text-decoration-none" to={`/category/${category.id}`}>ver productos</NavLink></button>
                 </div>
             </div>
         </div>
