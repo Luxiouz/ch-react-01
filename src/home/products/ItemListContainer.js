@@ -1,61 +1,56 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router';
+import { getFirestore } from '../../firebase/config';
 import LoadingCardList from '../../shared/placeholders/LoadingCardList';
-import { getProducts } from '../../utils/dataSource';
 import errorCatcher from '../../utils/errorCatcher';
 import ProductItemList from './ItemList';
 
-export default function ProductListContainer() {
+export default function ProductListContainer({categories}) {
 
     const [loading, setLoading] = useState(true)
-    const [categoryObj, setCategoryObj] = useState({});
     const [products, setProducts] = useState([]);
+    const [category, setCategory] = useState({});
     const { categoryId } = useParams()
     useEffect(() => {
 
-        /*
-        switch (category) {
-            case 'sillas':
-                categoryId = 'cat-chair';
-                break;
-            case 'escritorios':
-                categoryId = 'cat-desktop';
-                break;
-            case 'accesorios':
-                categoryId = 'cat-accesory';
-                break;
-            default:
-                categoryId = '';
-        }
-
-        console.log("categorid", categoryId)
-        */
         setLoading(true);
 
-        getProducts(categoryId).then(result => {
-            console.log("cat2", categoryId, "cat3", result)
-            result.category && setCategoryObj(result.category);
-            result.products && setProducts(result.products);
-        }, error => { errorCatcher(error) }).finally(() => { setLoading(false) });
-    }, [categoryId])
+        const db = getFirestore();
+
+        setCategory(categories.find(cat => cat.id === categoryId))
+
+        const productCollection = db.collection('products');
+        (categoryId? productCollection.where('category' ,'==' , categoryId): productCollection).get().then((response)=>{
+            if(response){
+                const items = response.docs.map(item => {
+                    return {id: item.id ,...item.data()}
+                })
+                
+                setProducts(items);
+            }
+        }).catch(e => errorCatcher(e)).finally(() => {
+            setLoading(false);
+        })
+
+    }, [categories, categoryId])
 
     return (
         <div>
 
-            {loading ? <br></br> :
+            {(categoryId) ? 
                 <>
                     <div className="row">
                         <div className="col-sm-3">
-                            <img className="img-fluid img-thumbnail" src={categoryObj.photoUrl} style={{ width: '100%' }} alt={categoryObj.name} />
+                            <img className="img-fluid img-thumbnail" src={category.photoUrl} style={{ width: '100%' }} alt={category.name} />
                         </div>
                         <div className="col-sm-9">
-                            <h1 className="text-capitalize">{categoryObj.name}</h1>
-                            <p>{categoryObj.description}</p>
+                            <h1 className="text-capitalize">{category.name}</h1>
+                            <p>{category.description}</p>
                         </div>
 
                     </div>
                     <hr />
-                </>
+                </> : <br></br>
             }
             {
                 loading ? <LoadingCardList length="12"></LoadingCardList> :

@@ -15,7 +15,7 @@ const categories = [
         id: 'cat-accesory',
         name: 'Accesorios',
         description: 'Lorem Ipsum  Accesorios es simplemente el texto de relleno de las imprentas y archivos de texto.',
-        photoUrl: '../../assets/accesorios.jpeg'
+        photoUrl: 'https://firebasestorage.googleapis.com/v0/b/home-office-coder-react.appspot.com/o/categories%2Faccesorios.jpeg?alt=media&token=d15ffd71-d440-4349-9f68-fc95be58dba8'
     },
 ]
 
