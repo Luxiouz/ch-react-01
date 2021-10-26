@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useHistory, useParams } from 'react-router'
+import { CartContext } from '../../context/CartContext';
 import { getFirestore } from '../../firebase/config';
 import ItemCount from '../../shared/components/ItemCount';
 import LoadingCardList from '../../shared/placeholders/LoadingCardList';
@@ -11,6 +12,7 @@ export default function ItemDetailContainer() {
     const [count, setCount] = useState(0);
     const { itemId } = useParams();
     const history = useHistory();
+    const {addToCart} = useContext(CartContext);
 
     useEffect(() => {
 
@@ -27,8 +29,8 @@ export default function ItemDetailContainer() {
     }, [itemId])
 
     const onAddHandler = (count) => {
-        console.log("count", count)
         setCount(count);
+        addToCart({item:product, quantity: count})
     }
 
     const handleCart = () => {

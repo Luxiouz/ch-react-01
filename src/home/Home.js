@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { CartContext, CartProvider } from '../context/CartContext.js';
 import { getFirestore } from '../firebase/config.js';
 import NavBar from '../shared/components/NavBar.js';
 import LoadingCardList from '../shared/placeholders/LoadingCardList.js';
@@ -30,36 +31,38 @@ export default function Home() {
     }, []);
 
     return (
-        <BrowserRouter>
-            <main className='container p-0'>
-                {
-                    loading ? <><NavBar title="Home Office Store"></NavBar><LoadingCardList length="12" /></> :
+        <CartProvider>
+            <BrowserRouter>
+                <main className='container p-0'>
+                    {
+                        loading ? <><NavBar title="Home Office Store"></NavBar><LoadingCardList length="12" /></> :
 
-                        <>
-                            <NavBar title="Home Office Store" categories={categories}></NavBar>
-                            <Switch>
-                                <Route exact path="/">
-                                    <CategoryContainer loading={loading} categories={categories}></CategoryContainer>
-                                </Route>
-                                <Route exact path="/products">
-                                    <ProductListContainer categories={categories}></ProductListContainer>
-                                </Route>
-                                <Route exact path="/category/:categoryId">
-                                    <ProductListContainer categories={categories}></ProductListContainer>
-                                </Route>
-                                <Route exact path="/item/:itemId">
-                                    <ItemDetailContainer categories={categories}></ItemDetailContainer>
-                                </Route>
-                                <Route exact path="/cart">
-                                    <Cart categories={categories}></Cart>   
-                                </Route>
-                                <Route path="/">
-                                    <CategoryContainer categories={categories}></CategoryContainer>
-                                </Route>
-                            </Switch>
-                        </>
-                }
-            </main>
-        </BrowserRouter>
+                            <>
+                                <NavBar title="Home Office Store" categories={categories}></NavBar>
+                                <Switch>
+                                    <Route exact path="/">
+                                        <CategoryContainer loading={loading} categories={categories}></CategoryContainer>
+                                    </Route>
+                                    <Route exact path="/products">
+                                        <ProductListContainer categories={categories}></ProductListContainer>
+                                    </Route>
+                                    <Route exact path="/category/:categoryId">
+                                        <ProductListContainer categories={categories}></ProductListContainer>
+                                    </Route>
+                                    <Route exact path="/item/:itemId">
+                                        <ItemDetailContainer categories={categories}></ItemDetailContainer>
+                                    </Route>
+                                    <Route exact path="/cart">
+                                        <Cart categories={categories}></Cart>
+                                    </Route>
+                                    <Route path="/">
+                                        <CategoryContainer categories={categories}></CategoryContainer>
+                                    </Route>
+                                </Switch>
+                            </>
+                    }
+                </main>
+            </BrowserRouter>
+        </CartProvider>
     )
 }

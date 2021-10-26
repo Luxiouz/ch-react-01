@@ -1,7 +1,15 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
+import { CartContext } from '../../context/CartContext'
 
 export default function NavBar({ title, categories }) {
+
+    const {getTotal} = useContext(CartContext);
+    const [total, setTotal] = useState(0)
+
+    useEffect(() => {
+        setTotal(getTotal())
+    }, [getTotal])
 
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -23,7 +31,7 @@ export default function NavBar({ title, categories }) {
                             }
 
                         </ul>
-                        <NavLink to="/cart" className="nav-link text-decoration-none text-secondary"><i className="cart-icon bi bi-cart3"></i></NavLink>
+                        <NavLink to="/cart" className="nav-link text-decoration-none text-secondary"><i className="cart-icon bi bi-cart3"></i>{total>0?<>x{total}</>:''}</NavLink>
                     </div> :
                     <li className="nav-item">
                         cargando...
