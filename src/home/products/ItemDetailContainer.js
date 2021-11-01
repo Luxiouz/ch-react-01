@@ -59,7 +59,7 @@ export default function ItemDetailContainer() {
                             <ItemCount stock={product.stock} value={count} onAdd={onAddHandler}></ItemCount> :
                             <>
                                 <button className="btn btn-link btn-add-cart d-block p-0" onClick={()=>{setShowCount(true)}}>modificar cantidad</button>
-                                <button className="btn btn-primary text-uppercase btn-add-cart " onClick={handleCart}><i className="bi bi-cart-plus pe-2"></i>Terminar Compra</button>
+                                <button className="animate__animated animate__bounce btn btn-primary text-uppercase btn-add-cart " onClick={handleCart}><i className="animate__jello bi bi-cart-plus pe-2"></i>Terminar Compra</button>
                                 <small className="d-block text-muted text-small">{count} items agregados al carrito</small>
                             </>}
                     </div>

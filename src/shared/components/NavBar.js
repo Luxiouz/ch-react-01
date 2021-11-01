@@ -5,12 +5,7 @@ import { UIContext } from '../../context/UIContext';
 
 export default function NavBar({ title, categories }) {
 
-    const {getTotal} = useContext(CartContext);
-    const [total, setTotal] = useState(0)
-
-    useEffect(() => {
-        setTotal(getTotal())
-    }, [getTotal])
+    const {cart, getTotal} = useContext(CartContext);
 
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light mb-4">
@@ -32,7 +27,7 @@ export default function NavBar({ title, categories }) {
                             }
 
                         </ul>
-                        <NavLink to="/cart" className="nav-link text-decoration-none text-secondary"><i className="cart-icon bi bi-cart3"></i>{total>0?<>x{total}</>:''}</NavLink>
+                        { cart.length !== 0 &&  <NavLink key={getTotal()} to="/cart" className="animate__heartBeat nav-link text-decoration-none text-secondary"><i className="cart-icon bi bi-cart3"></i>{getTotal()>0?<>x{getTotal()}</>:''}</NavLink>}
                     </div> :
                     <li className="nav-item">
                         cargando...

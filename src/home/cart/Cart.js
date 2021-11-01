@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Redirect } from 'react-router-dom'
 import { CartContext } from '../../context/CartContext'
 import ItemCount from '../../shared/components/ItemCount'
 
@@ -9,6 +9,7 @@ export default function Cart() {
 
     return (
         <div>
+            { cart.length === 0 && <Redirect to='/' /> }
             <ul className="list-group">
                 {cart.map(item => (
                     <li className="list-group-item d-flex justify-content-between align-items-start" key={item.item.id}>

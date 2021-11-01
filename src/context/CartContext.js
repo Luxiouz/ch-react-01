@@ -26,7 +26,14 @@ export const CartProvider = ({ children }) => {
     }
 
     const removeItem = (itemId) => {
-        setCart(cart.splice(itemId, 1))
+        const cartCopy = [...cart];
+        for(let i=0; i<cartCopy.length; i++){
+            if(cartCopy[i].item.id === itemId){
+                cartCopy.splice( i, 1);
+                setCart(cartCopy);
+                break;
+            }
+        }
     }
 
     const getTotal = () => {
