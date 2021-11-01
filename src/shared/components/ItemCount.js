@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
-export default function ItemCount({stock, onAdd}) {
-    const [count, setCount] = useState(1);
+export default function ItemCount({value, stock, onAdd, cartMode, onUpdate, onRemove}) {
+    const [count, setCount] = useState(value || 1);
 
     useEffect(() => {
         if(count<1) setCount('')
@@ -11,7 +11,6 @@ export default function ItemCount({stock, onAdd}) {
 
     const onChangeCount = (e) => {
         setCount(e.target.value);
-        
     }
 
     const onIncrement = () => {
@@ -40,7 +39,12 @@ export default function ItemCount({stock, onAdd}) {
                     <button disabled={count>=stock} type="button" className="btn btn-outline-secondary" onClick={onIncrement}>+</button>
                 </div>
             </div>
-            <button className="btn btn-success text-uppercase btn-add-cart " onClick={handleClick}><i className="bi bi-cart-plus pe-2"></i>Agregar al carrito</button>
+            
+            { !cartMode ? <button className="btn btn-success text-uppercase btn-add-cart " onClick={handleClick}><i className="bi bi-cart-plus pe-2"></i>Agregar al carrito</button> :
+            <>
+            <button className="btn btn-secondary btn-add-cart " onClick={()=>{onUpdate(count)}}>Actualizar Cantidad</button>
+            <button className="ms-2 btn btn-danger btn-add-cart " onClick={onRemove}>Eliminar</button>
+            </>}
         </div>
     )
 }

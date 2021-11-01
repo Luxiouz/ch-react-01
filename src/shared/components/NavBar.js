@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { CartContext } from '../../context/CartContext'
+import { UIContext } from '../../context/UIContext';
 
 export default function NavBar({ title, categories }) {
 
@@ -12,7 +13,7 @@ export default function NavBar({ title, categories }) {
     }, [getTotal])
 
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <nav className="navbar navbar-expand-lg navbar-light bg-light mb-4">
             <div className="container-fluid">
                 <NavLink className="navbar-brand" to="/"><b>{title}</b></NavLink>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

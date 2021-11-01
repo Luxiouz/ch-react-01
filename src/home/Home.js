@@ -7,6 +7,7 @@ import LoadingCardList from '../shared/placeholders/LoadingCardList.js';
 import errorCatcher from '../utils/errorCatcher.js';
 import Cart from './cart/Cart.js';
 import CategoryContainer from './categories/ItemListContainer.js';
+import Checkout from './checkout/Checkout.js';
 import ItemDetailContainer from './products/ItemDetailContainer.js';
 import ProductListContainer from './products/ItemListContainer.js';
 
@@ -33,12 +34,18 @@ export default function Home() {
     return (
         <CartProvider>
             <BrowserRouter>
-                <main className='container p-0'>
-                    {
-                        loading ? <><NavBar title="Home Office Store"></NavBar><LoadingCardList length="12" /></> :
 
-                            <>
-                                <NavBar title="Home Office Store" categories={categories}></NavBar>
+                {
+                    loading ? <>
+                        <NavBar title="Home Office Store"></NavBar>
+                        <main className='container'>
+                            <LoadingCardList length="12" />
+                        </main>
+                    </> :
+
+                        <>
+                            <NavBar title="Home Office Store" categories={categories}></NavBar>
+                            <main className='container'>
                                 <Switch>
                                     <Route exact path="/">
                                         <CategoryContainer loading={loading} categories={categories}></CategoryContainer>
@@ -55,13 +62,16 @@ export default function Home() {
                                     <Route exact path="/cart">
                                         <Cart categories={categories}></Cart>
                                     </Route>
+                                    <Route exact path="/checkout">
+                                        <Checkout></Checkout>
+                                    </Route>
                                     <Route path="/">
                                         <CategoryContainer categories={categories}></CategoryContainer>
                                     </Route>
                                 </Switch>
-                            </>
-                    }
-                </main>
+                            </main>
+                        </>
+                }
             </BrowserRouter>
         </CartProvider>
     )

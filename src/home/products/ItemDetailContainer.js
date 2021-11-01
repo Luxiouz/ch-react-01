@@ -10,9 +10,10 @@ export default function ItemDetailContainer() {
     const [loading, setLoading] = useState(true);
     const [product, setProduct] = useState({});
     const [count, setCount] = useState(0);
+    const [showCount, setShowCount] = useState(true);
     const { itemId } = useParams();
     const history = useHistory();
-    const {addToCart} = useContext(CartContext);
+    const { addToCart } = useContext(CartContext);
 
     useEffect(() => {
 
@@ -30,7 +31,8 @@ export default function ItemDetailContainer() {
 
     const onAddHandler = (count) => {
         setCount(count);
-        addToCart({item:product, quantity: count})
+        addToCart({ item: product, quantity: count })
+        setShowCount(0);
     }
 
     const handleCart = () => {
@@ -53,11 +55,12 @@ export default function ItemDetailContainer() {
                         <p className="text-secondary">PID-{product.id}</p>
                         <h3 className="mb-3 text-item-price">S/. {product.price}</h3>
                         <p className="text-success">Stock: {product.stock}</p>
-                        {count <= 0 ?
-                            <ItemCount stock={product.stock} onAdd={onAddHandler}></ItemCount> :
+                        {showCount ?
+                            <ItemCount stock={product.stock} value={count} onAdd={onAddHandler}></ItemCount> :
                             <>
+                                <button className="btn btn-link btn-add-cart d-block p-0" onClick={()=>{setShowCount(true)}}>modificar cantidad</button>
                                 <button className="btn btn-primary text-uppercase btn-add-cart " onClick={handleCart}><i className="bi bi-cart-plus pe-2"></i>Terminar Compra</button>
-                                <small className="d-block text-muted text-small">{count} items agregados al carrito</small>    
+                                <small className="d-block text-muted text-small">{count} items agregados al carrito</small>
                             </>}
                     </div>
                 </div>

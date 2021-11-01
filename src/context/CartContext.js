@@ -11,13 +11,12 @@ export const CartProvider = ({ children }) => {
     }, [cart])
 
     const addToCart = (item) => {
-
         const cartCopy = [...cart];
         let found = false;
 
         for (let i = 0; i < cartCopy.length; i++) {
             if (cartCopy[i].item.id === item.item.id) {
-                cartCopy[i].quantity += item.quantity;
+                cartCopy[i].quantity = item.quantity;
                 found = true;
                 break;
             }
@@ -31,17 +30,20 @@ export const CartProvider = ({ children }) => {
     }
 
     const getTotal = () => {
-        console.log(cart)
-        return cart ? cart.reduce((ac, i) => ac + i.quantity, 0) : 0
+        return cart ? cart.reduce((ac, i) => ac + Number(i.quantity), 0) : 0
     }
 
-    const clear = () => {
+    const getTotalAmount = () => {
+        return cart ? cart.reduce((ac, i) => ac + Number(i.quantity)*Number(i.item.price), 0) : 0
+    }
+
+    const clearCart = () => {
         setCart([]);
     }
 
     return (
         <CartContext.Provider value={{
-            cart, addToCart, removeItem, getTotal, clear
+            cart, addToCart, removeItem, getTotal, clearCart, getTotalAmount
         }}>
             {children}
         </CartContext.Provider>
