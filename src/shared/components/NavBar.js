@@ -1,7 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import { NavLink } from 'react-router-dom'
 import { CartContext } from '../../context/CartContext'
-import { UIContext } from '../../context/UIContext';
 
 export default function NavBar({ title, categories }) {
 

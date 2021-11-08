@@ -1,10 +1,10 @@
-import React, { createContext } from 'react'
+import React, { createContext, useState } from 'react'
 
 export const UIContext = createContext([]);
 
-export const CartProvider = ({ children }) => {
+export const UIProvider = ({ children }) => {
 
-    const [loading, setLoading] = (false);
+    const [loading, setLoading] = useState(false);
 
     return (
         <UIContext.Provider value={{

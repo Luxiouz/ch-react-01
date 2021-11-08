@@ -11,60 +11,28 @@ export default function Checkout() {
     const { loading, setLoading } = useContext(UIContext);
     const { cart, getTotal, clearCart, getTotalAmount } = useContext(CartContext);
 
-    const customer = {
-        name: '',
-        lastName: '',
-        mail: '',
-        phone: '',
-        address: '',
-        reference: '',
-    }
 
-    const getSpanishProperty = (key) => {
-        if (key === 'name') { return 'name' }
-        else if (key === 'name') { return 'apellido' }
-        else return key;
-    }
-
-    const validateFields = () => {
-        let valid = 0;
-
-        for (let key in customer) {
-            if (key !== 'reference') {
-                if (customer[key].length < 3) {
-                    valid++;
-                    Swal.fire(
-                        'Good job!',
-                        `El campo ${getSpanishProperty(key)} esta vacío o debe tener mínimo 3 caracteres`,
-                        'warning'
-                    )
-                }
-            }
-        }
-        return valid === 0;
-    }
-
-
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const handleSubmit = async (customer) => {
 
         setLoading(true);
 
         if (loading) return;
 
-        // TODO add validations
-        if (!validateFields()) return;
-
         try {
             addOrder(customer, cart, getTotal()).then(
                 res => {
                     Swal.fire({
-                        title: 'Orden Registrada!',
-                        text: `Número de orden registrado: ${res}`,
+                        title: 'Pedido Registrado!',
+                        html: `<p style="text-align: left;">Número de pedido: <p>
+
+                        <h3>${res}</h3>
+                        
+                        <small style="text-align: left;">Con el número de pedido puede hacer el seguimiento en:&nbsp;<a href="https://youtu.be/dQw4w9WgXcQ">seguimiento</small>`,
                         icon: 'success',
-                        willClose: () => { clearCart() }
+                        // willClose: () => { clearCart() }
                     })
+                    // We have to be sure to clear the cart, even if the user remove swal element from dev tools.
+                    clearCart();
                 }
             ).catch(error => {
                 Swal.fire(
@@ -90,7 +58,7 @@ export default function Checkout() {
             { cart.length === 0 && <Redirect to='/' /> }
             <h1 className="text-center my-5">Total a pagar: S/. {getTotalAmount()}</h1>
             <p className="text-success">Llene el formuario para efectuar la compra</p>
-            <CheckoutForm loading={loading} customer={customer} handleSubmit={handleSubmit}></CheckoutForm>
+            <CheckoutForm loading={loading} handleSubmit={handleSubmit}></CheckoutForm>
         </>
     )
 
