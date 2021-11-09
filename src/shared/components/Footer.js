@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Footer() {
     return (
-        <footer className="text-center text-white" style={{backgroundColor: "#f1f1f1"}}>
+        <footer className="footer text-center text-white" style={{backgroundColor: "#f1f1f1"}}>
             <div className="container pt-4">
                 <section className="mb-4">
                     <a
@@ -24,7 +24,7 @@ export default function Footer() {
                         href="#!"
                         role="button"
                         data-mdb-ripple-color="dark"
-                    ><i class="bi bi-google"></i>
+                    ><i className="bi bi-google"></i>
                     </a>
 
                     <a
@@ -32,20 +32,20 @@ export default function Footer() {
                         href="#!"
                         role="button"
                         data-mdb-ripple-color="dark"
-                    ><i class="bi bi-instagram"></i></a>
+                    ><i className="bi bi-instagram"></i></a>
 
                     <a
                         className="btn btn-link btn-floating btn-lg text-dark m-1"
                         href="#!"
                         role="button"
                         data-mdb-ripple-color="dark"
-                    ><i class="bi bi-linkedin"></i></a>
+                    ><i className="bi bi-linkedin"></i></a>
                     <a
                         className="btn btn-link btn-floating btn-lg text-dark m-1"
                         href="https://github.com/Luxiouz/ch-react-01"
                         role="button"
                         data-mdb-ripple-color="dark"
-                    ><i class="bi bi-github"></i></a>
+                    ><i className="bi bi-github"></i></a>
                 </section>
             </div>
 

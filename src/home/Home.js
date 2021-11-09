@@ -37,7 +37,7 @@ export default function Home() {
         <UIProvider>
             <CartProvider>
                 <BrowserRouter>
-
+                    <div className="d-flex flex-column justify-content-between min-vh-100">
                     {
                         loading ? <>
                             <NavBar title="Home Office Store"></NavBar>
@@ -76,6 +76,7 @@ export default function Home() {
                                 <Footer></Footer>
                             </>
                     }
+                    </div>
                 </BrowserRouter>
             </CartProvider>
         </UIProvider>
