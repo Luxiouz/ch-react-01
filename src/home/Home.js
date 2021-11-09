@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { CartProvider } from '../context/CartContext.js';
 import { UIProvider } from '../context/UIContext.js';
 import { getFirestore } from '../firebase/config.js';
+import Footer from '../shared/components/Footer.js';
 import NavBar from '../shared/components/NavBar.js';
 import LoadingCardList from '../shared/placeholders/LoadingCardList.js';
 import errorCatcher from '../utils/errorCatcher.js';
@@ -72,6 +73,7 @@ export default function Home() {
                                         </Route>
                                     </Switch>
                                 </main>
+                                <Footer></Footer>
                             </>
                     }
                 </BrowserRouter>

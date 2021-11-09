@@ -8,7 +8,7 @@ export default function NavBar({ title, categories }) {
 
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light mb-4">
-            <div className="container-fluid">
+            <div className="container">
                 <NavLink className="navbar-brand" to="/"><b>{title}</b></NavLink>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>

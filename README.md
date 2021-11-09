@@ -1,3 +1,25 @@
+# Home Office store
+
+Proyecto de desarrollo frontend para una tienda dedicada a la venta de productos relacionados al Home Office. El proyecto fue desarrollado con Reacty utiliza backend firebase. Se ha incorporado el uso de Context para tener un estado centralizado con el cual se ha trabajado la lógica del carrito de compras.
+
+[![IMAGE ALT TEXT](http://img.youtube.com/vi/iovz1USThPI/0.jpg)](http://www.youtube.com/watch?v=iovz1USThPI "Video Title")
+
+## Categorias
+La tienda presenta 3 categorías
+
+* Sillas
+* Escritorios
+* Accesorios
+
+## Tecnologías
+* Html
+* Css
+* Javascript
+* React
+* React Context
+* Firebase
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
