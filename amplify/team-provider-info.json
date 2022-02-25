@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-upccloudhomeoffice-dev-34738-authRole",
+      "UnauthRoleArn": "arn:aws:iam::473737342252:role/amplify-upccloudhomeoffice-dev-34738-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::473737342252:role/amplify-upccloudhomeoffice-dev-34738-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-upccloudhomeoffice-dev-34738-deployment",
+      "UnauthRoleName": "amplify-upccloudhomeoffice-dev-34738-unauthRole",
+      "StackName": "amplify-upccloudhomeoffice-dev-34738",
+      "StackId": "arn:aws:cloudformation:us-east-1:473737342252:stack/amplify-upccloudhomeoffice-dev-34738/c4900510-9229-11ec-854c-0ed74134c683",
+      "AmplifyAppId": "d19ezej8dkvd20"
+    }
+  }
+}
